@@ -1,0 +1,25 @@
+filetype: uxntal
+
+detect:
+    filename: "\\.(tal)$"
+
+rules:
+    - statement: "\\b(BRK|INC|POP|NIP|SWP|ROT|DUP|OVR|EQU|NEQ|GTH|LTH|JMP|JCN|JSR|STH|LDZ|STZ|LDR|STR|LDA|STA|DEI|DEO|ADD|SUB|MUL|DIV|AND|ORA|EOR|SFT)\\b"
+    - statement: "\\b(BRK|INC|POP|NIP|SWP|ROT|DUP|OVR|EQU|NEQ|GTH|LTH|JMP|JCN|JSR|STH|LDZ|STZ|LDR|STR|LDA|STA|DEI|DEO|ADD|SUB|MUL|DIV|AND|ORA|EOR|SFT)(2|r|k|2r|2k|rk|2rk)\\b"
+    
+    - constant.string:
+        start: "\""
+        end: " "
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([\"'abfnrtv\\\\]|[0-3]?[0-7]{1,2}|x[0-9A-Fa-f]{1,2}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})"
+
+    - constant.number: "\\b([0-9A-Fa-f.]*)\\b"
+    - constant.number: "\\b($[0-9A-Fa-f.]*)\\b"
+    - constant.number: "\\b(#[0-9A-Fa-f.]*)\\b"
+    
+    - comment:
+        start: "\\("
+        end: "\\)"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"

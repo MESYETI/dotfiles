@@ -1,0 +1,12 @@
+{
+    "basename": true,
+    "colorcolumn": 85,
+    "colorscheme": "gruvy3",
+    "divreverse": false,
+    "linter": false,
+    "parsecursor": true,
+    "savecursor": true,
+    "saveundo": true,
+    "scrollbar": true,
+    "tabmovement": true
+}

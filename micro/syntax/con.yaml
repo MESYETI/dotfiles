@@ -1,0 +1,45 @@
+filetype: conlang
+detect:
+    filename: "\\.(con|cn)$"
+
+rules:
+    - identifier: "\\b[A-Z_][0-9A-Z_]*\\b"
+    - special: "\\b(begin|end)\\b"
+    - special: "\\B(\\~|\\:)\\B"
+    - statement: "\\B(\\.|,)\\B"
+    - statement: "\\B\\.(flush|ascii|str|32|s32)\\b"
+    - statement: "\\b(push|pushvar|pop|popg|not|and|or|del|delg|while|dowhile|if|exit|include|paste|call|func|cmd|openf|closef|sizeoff|writef|writesf|readf|return|break|senv|genv|popr32a|popr32b|pushr32a|pushr32b|cmpr32ab|caseof|r32ab|r32a|loadso|loadsof|pop32|cmpsr32ab|cos32|sin32|sr32ab|popg32)\\b"
+    - preproc: "(?:\\A|\\s)\\#(READABLE)(?:\\s|\\z)"
+
+    - constant.bool: "\\b(true|false)\\b"
+
+    - constant.string:
+        start: "\""
+        end: "\""
+        rules:
+            - constant.specialChar: "\\\\[0abefnrtv\\\"\\\\]"
+            - constant.specialChar: "g:"
+
+    - constant.number: "\\$[0-9A-Fa-f]+"
+    - constant.number: "\\b([0-9]+)\\b"
+
+    - symbol.operator: "[\\+\\-\\*/=><&\\|]"
+
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME|READABLE):?"
+            #- error: "(READABLE)"
+
+    - comment:
+        start: "//"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
+
+    - comment:
+        start: "/\\*"
+        end: "\\*/"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"
